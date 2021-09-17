@@ -1,5 +1,4 @@
 use std::str;
-// use std::env;
 use std::process::Command;
 
 fn main() {
@@ -12,20 +11,20 @@ fn main() {
             sem_vers.push(SemVer::new(s));
         }
     }
-
-    sem_vers.sort_by(|a,b| b.patch.cmp(&a.patch));
-    sem_vers.sort_by(|a,b| b.minor.cmp(&a.minor));
-    sem_vers.sort_by(|a,b| b.major.cmp(&a.major));
-    for s in sem_vers {
-        println!("{:?}", s)
-    }
+    sem_vers.sort_by(|a, b| b.patch.cmp(&a.patch));
+    sem_vers.sort_by(|a, b| b.minor.cmp(&a.minor));
+    sem_vers.sort_by(|a, b| b.major.cmp(&a.major));
+    println!(
+        "{}.{}.{}",
+        sem_vers[0].major, sem_vers[0].minor, sem_vers[0].patch
+    );
 }
 
 #[derive(Eq, Ord, PartialEq, PartialOrd, Debug)]
 struct SemVer {
     major: i32,
     minor: i32,
-    patch: i32
+    patch: i32,
 }
 
 impl SemVer {
