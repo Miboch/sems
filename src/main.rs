@@ -13,7 +13,9 @@ fn main() {
         }
     }
 
-    sem_vers.sort_by(|a,b| a.patch.cmp(&b.patch));
+    sem_vers.sort_by(|a,b| b.patch.cmp(&a.patch));
+    sem_vers.sort_by(|a,b| b.minor.cmp(&a.minor));
+    sem_vers.sort_by(|a,b| b.major.cmp(&a.major));
     for s in sem_vers {
         println!("{:?}", s)
     }
